@@ -16,3 +16,12 @@ runs:
       run: |
         wget https://github.com/github/codeql-cli-binaries/releases/download/v${{ inputs.version }}/codeql-${{ inputs.platform }}.zip
         unzip codeql-${{ inputs.platform }}.zip -d ~
+    - shell: bash
+      run: |
+        for lock in $(find . -name codeql-pack.lock.yml); do
+          ~/codeql/codeql pack install $(dirname $lock);
+        done
+    - uses: actions/cache@v4
+      with:
+        path: ~/.codeql/
+        key: codeql|${{ inputs.version }}|${{ inputs.platform }}|hashFiles('**/codeql-pack.lock.yml')
