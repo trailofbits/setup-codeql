@@ -9,6 +9,10 @@ inputs:
     description: CodeQL platform
     required: false
     default: 'linux64'
+  checksum:
+    description: CodeQL SHA256 checksum
+    required: false
+    default: 'b5dec48ca1848cec8323816414830ea87edd3178ef5686c71946020a36cd5a61'
 runs:
   using: composite
   steps:
@@ -22,6 +26,7 @@ runs:
       run: |
         mkdir -p ~/.codeql/bin/${{ inputs.version }}-${{ inputs.platform }}
         wget -q https://github.com/github/codeql-cli-binaries/releases/download/v${{ inputs.version }}/codeql-${{ inputs.platform }}.zip
+        test ${{ inputs.checksum }} && echo "${{ inputs.checksum}}  codeql-${{ inputs.platform }}.zip" | sha256sum -c -
         unzip -q codeql-${{ inputs.platform }}.zip -d ~/.codeql/bin/${{ inputs.version }}-${{ inputs.platform }}
     - shell: bash
       run: |
