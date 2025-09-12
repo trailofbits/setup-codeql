@@ -11,4 +11,4 @@ jobs:
       - name: Self test action
         uses: ./
       - name: Run CodeQL binary
-        run: ~/codeql/codeql --version
+        run: codeql --version
