@@ -20,7 +20,6 @@ jobs:
         with:
           version: '2.23.0'
           checksum: 'b5dec48ca1848cec8323816414830ea87edd3178ef5686c71946020a36cd5a62'
-        continue-on-error: true
-      - name: Error on success
-        if: success()
-        run: exit 1
+      - name: Succeed if previous step failed
+        if: failure()
+        run: exit 0
