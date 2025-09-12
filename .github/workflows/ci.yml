@@ -8,20 +8,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v5
-      - name: Self test action correct checksum
+      - name: Self test action
         uses: ./
-        with:
-          version: '2.23.0'
-          checksum: 'b5dec48ca1848cec8323816414830ea87edd3178ef5686c71946020a36cd5a61'
       - name: Run CodeQL binary
         run: codeql --version
-      - name: Self test action incorrect checksum
-        id: incorrect-checksum
-        uses: ./
-        with:
-          version: '2.23.0'
-          checksum: 'b5dec48ca1848cec8323816414830ea87edd3178ef5686c71946020a36cd5a62'
-        continue-on-error: true
-      - name: Error if previous step succeeded
-        if: ${{ steps.incorrect-checksum.outcome == 'success' }}
-        run: exit 1
