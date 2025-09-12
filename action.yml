@@ -23,6 +23,8 @@ runs:
         mkdir -p ~/.codeql/bin/${{ inputs.version }}-${{ inputs.platform }}
         wget -q https://github.com/github/codeql-cli-binaries/releases/download/v${{ inputs.version }}/codeql-${{ inputs.platform }}.zip
         unzip -q codeql-${{ inputs.platform }}.zip -d ~/.codeql/bin/${{ inputs.version }}-${{ inputs.platform }}
+    - shell: bash
+      run: |
         echo "$HOME/.codeql/bin/${{ inputs.version }}-${{ inputs.platform }}/codeql" >> "$GITHUB_PATH"
     - shell: bash
       if: steps.codeql-cache.outputs.cache-hit != 'true'
