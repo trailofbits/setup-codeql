@@ -1,0 +1,18 @@
+name: setup-codeql
+description: Run CodeQL
+inputs:
+  version:
+    description: CodeQL version
+    required: false
+    default: '2.23.0'
+  platform:
+    description: CodeQL platform
+    required: false
+    default: 'linux64'
+runs:
+  using: composite
+  steps:
+    - shell: bash
+      run: |
+        wget https://github.com/github/codeql-cli-binaries/releases/download/v${{ inputs.version }}/codeql-${{ inputs.platform }}.zip
+        unzip codeql-${{ inputs.platform }}.zip -d ~

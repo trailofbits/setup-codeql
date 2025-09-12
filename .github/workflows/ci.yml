@@ -1,0 +1,14 @@
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+jobs:
+  main:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+      - name: Self test action
+        uses: ./
+      - name: Run CodeQL binary
+        run: ~/codeql/codeql --version
