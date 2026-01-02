@@ -16,11 +16,11 @@ inputs:
 runs:
   using: composite
   steps:
-    - uses: actions/cache@v4
+    - uses: actions/cache@v5
       id: codeql-cache
       with:
         path: ~/.codeql/
-        key: codeql|${{ inputs.version }}|${{ inputs.platform }}|hashFiles('**/codeql-pack.lock.yml')
+        key: codeql|${{ inputs.version }}|${{ inputs.platform }}|${{ hashFiles('**/codeql-pack.lock.yml') }}
     - shell: bash
       if: steps.codeql-cache.outputs.cache-hit != 'true'
       run: |
