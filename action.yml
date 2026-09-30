@@ -4,7 +4,7 @@ inputs:
   version:
     description: CodeQL version
     required: false
-    default: '2.23.0'
+    default: '2.27.1'
   platform:
     description: CodeQL platform
     required: false
@@ -12,7 +12,7 @@ inputs:
   checksum:
     description: CodeQL SHA256 checksum
     required: false
-    default: 'b5dec48ca1848cec8323816414830ea87edd3178ef5686c71946020a36cd5a61'
+    default: '6ad2cead390cecf62dd59ae7ffd673d216902a9c00975ce107a362464a8b891e'
 runs:
   using: composite
   steps:
